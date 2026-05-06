@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UrbanThread — Shopify Theme Demo</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body { 
+    font-family: 'Helvetica Neue', Arial, sans-serif; 
+    color: #1a1a1a;
+    background: #fff;
+  }
+
+  /* HEADER */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    border-bottom: 1px solid #e8e8e8;
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 100;
+  }
+
+  .logo {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: #1a1a1a;
+    margin-left: 32px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: opacity 0.2s;
+  }
+
+  nav a:hover { opacity: 0.5; }
+
+  .cart-btn {
+    background: #1a1a1a;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+
+  /* HERO */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 85vh;
+  }
+
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px;
+    background: #f5f5f0;
+  }
+
+  .hero-text .tag {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 20px;
+  }
+
+  .hero-text h1 {
+    font-size: 52px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    margin-bottom: 24px;
+  }
+
+  .hero-text p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 36px;
+    max-width: 380px;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 12px;
+  }
+
+  .btn-primary {
+    background: #1a1a1a;
+    color: white;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .btn-primary:hover { background: #333; }
+
+  .btn-secondary {
+    background: transparent;
+    color: #1a1a1a;
+    padding: 14px 28px;
+    border: 2px solid #1a1a1a;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .hero-image {
+    background: linear-gradient(135deg, #1a1a1a 0%, #444 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 120px;
+  }
+
+  /* COLLECTION SECTION */
+  .section {
+    padding: 80px 60px;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+
+  .section-header h2 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+
+  .section-header a {
+    font-size: 14px;
+    color: #555;
+    text-decoration: none;
+    border-bottom: 1px solid #555;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .product-card {
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .product-card:hover { transform: translateY(-4px); }
+
+  .product-image {
+    border-radius: 12px;
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+    margin-bottom: 16px;
+  }
+
+  .p1 { background: #f0e6d3; }
+  .p2 { background: #d3e6f0; }
+  .p3 { background: #e6d3f0; }
+  .p4 { background: #d3f0e6; }
+
+  .product-name {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .product-price {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 12px;
+  }
+
+  .product-price span {
+    text-decoration: line-through;
+    color: #aaa;
+    margin-right: 8px;
+  }
+
+  .add-to-cart {
+    width: 100%;
+    padding: 10px;
+    background: #1a1a1a;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .add-to-cart:hover { background: #333; }
+
+  /* BANNER */
+  .promo-banner {
+    background: #1a1a1a;
+    color: white;
+    padding: 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .promo-banner h2 {
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 1.2;
+  }
+
+  .promo-banner p {
+    color: #aaa;
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .btn-white {
+    background: white;
+    color: #1a1a1a;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  /* FEATURES */
+  .features {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: #e8e8e8;
+  }
+
+  .feature {
+    background: white;
+    padding: 32px;
+    text-align: center;
+  }
+
+  .feature-icon { font-size: 28px; margin-bottom: 12px; }
+  .feature h3 { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+  .feature p { font-size: 13px; color: #888; line-height: 1.5; }
+
+  /* FOOTER */
+  footer {
+    background: #1a1a1a;
+    color: #aaa;
+    padding: 60px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+  }
+
+  footer h4 {
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  footer a {
+    display: block;
+    color: #888;
+    text-decoration: none;
+    font-size: 13px;
+    margin-bottom: 10px;
+    transition: color 0.2s;
+  }
+
+  footer a:hover { color: white; }
+
+  .footer-logo {
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 16px;
+  }
+
+  .footer-desc {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #666;
+  }
+
+  .badge {
+    display: inline-block;
+    background: #e8ff47;
+    color: #1a1a1a;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  /* CART NOTIFICATION */
+  .notification {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: #1a1a1a;
+    color: white;
+    padding: 16px 24px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    display: none;
+    z-index: 999;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  }
+
+  @media (max-width: 768px) {
+    header { padding: 16px 20px; }
+    nav { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-text { padding: 40px 20px; }
+    .hero-text h1 { font-size: 36px; }
+    .hero-image { height: 300px; }
+    .section { padding: 40px 20px; }
+    .products-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .promo-banner { grid-template-columns: 1fr; padding: 40px 20px; }
+    .features { grid-template-columns: repeat(2, 1fr); }
+    footer { grid-template-columns: 1fr 1fr; padding: 40px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">UrbanThread</div>
+  <nav>
+    <a href="#">Collections</a>
+    <a href="#">New Arrivals</a>
+    <a href="#">Sale</a>
+    <a href="#">About</a>
+  </nav>
+  <button class="cart-btn" onclick="showCart()">Cart (0)</button>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="tag">New Collection 2026</div>
+    <h1>Wear the<br>Future.</h1>
+    <p>Premium streetwear built for the bold. 
+    Designed in Italy, worn worldwide. 
+    Limited drops every Friday.</p>
+    <div class="hero-btns">
+      <button class="btn-primary">Shop Now</button>
+      <button class="btn-secondary">View Lookbook</button>
+    </div>
+  </div>
+  <div class="hero-image">🧥</div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="section">
+  <div class="section-header">
+    <h2>Featured Products <span class="badge">NEW</span></h2>
+    <a href="#">View all →</a>
+  </div>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-image p1">👟</div>
+      <div class="product-name">Air Urban Sneaker</div>
+      <div class="product-price"><span>€120</span> €89</div>
+      <button class="add-to-cart" onclick="addToCart(this)">Add to Cart</button>
+    </div>
+    <div class="product-card">
+      <div class="product-image p2">🧢</div>
+      <div class="product-name">Classic Logo Cap</div>
+      <div class="product-price"><span>€45</span> €29</div>
+      <button class="add-to-cart" onclick="addToCart(this)">Add to Cart</button>
+    </div>
+    <div class="product-card">
+      <div class="product-image p3">👕</div>
+      <div class="product-name">Oversized Tee</div>
+      <div class="product-price"><span>€65</span> €49</div>
+      <button class="add-to-cart" onclick="addToCart(this)">Add to Cart</button>
+    </div>
+    <div class="product-card">
+      <div class="product-image p4">🧣</div>
+      <div class="product-name">Merino Scarf</div>
+      <div class="product-price"><span>€80</span> €59</div>
+      <button class="add-to-cart" onclick="addToCart(this)">Add to Cart</button>
+    </div>
+  </div>
+</section>
+
+<!-- PROMO BANNER -->
+<section class="promo-banner">
+  <div>
+    <h2>Summer Sale.<br>Up to 40% Off.</h2>
+  </div>
+  <div>
+    <p>Limited time offer on our most popular 
+    collections. Free shipping on orders over €50. 
+    No code needed — discount applied at checkout.</p>
+    <button class="btn-white">Shop the Sale</button>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<div class="features">
+  <div class="feature">
+    <div class="feature-icon">🚚</div>
+    <h3>Free Shipping</h3>
+    <p>On all orders over €50 across Europe</p>
+  </div>
+  <div class="feature">
+    <div class="feature-icon">↩️</div>
+    <h3>Easy Returns</h3>
+    <p>30-day no-questions-asked returns</p>
+  </div>
+  <div class="feature">
+    <div class="feature-icon">🔒</div>
+    <h3>Secure Payment</h3>
+    <p>Stripe, PayPal & Apple Pay accepted</p>
+  </div>
+  <div class="feature">
+    <div class="feature-icon">💬</div>
+    <h3>24/7 Support</h3>
+    <p>Live chat support always available</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">UrbanThread</div>
+    <p class="footer-desc">Premium streetwear from Italy.<br>
+    Built on Shopify. Designed for performance.</p>
+  </div>
+  <div>
+    <h4>Shop</h4>
+    <a href="#">New Arrivals</a>
+    <a href="#">Collections</a>
+    <a href="#">Sale</a>
+    <a href="#">Lookbook</a>
+  </div>
+  <div>
+    <h4>Help</h4>
+    <a href="#">Shipping Info</a>
+    <a href="#">Returns</a>
+    <a href="#">Size Guide</a>
+    <a href="#">Contact Us</a>
+  </div>
+  <div>
+    <h4>Company</h4>
+    <a href="#">About</a>
+    <a href="#">Careers</a>
+    <a href="#">Press</a>
+    <a href="#">Privacy</a>
+  </div>
+</footer>
+
+<div class="notification" id="notif">✓ Added to cart!</div>
+
+<script>
+let cartCount = 0;
+
+function addToCart(btn) {
+  cartCount++;
+  document.querySelector('.cart-btn').textContent = `Cart (${cartCount})`;
+  const notif = document.getElementById('notif');
+  notif.style.display = 'block';
+  setTimeout(() => notif.style.display = 'none', 2000);
+  btn.textContent = '✓ Added!';
+  btn.style.background = '#2d8a4e';
+  setTimeout(() => {
+    btn.textContent = 'Add to Cart';
+    btn.style.background = '#1a1a1a';
+  }, 2000);
+}
+
+function showCart() {
+  alert(`You have ${cartCount} item(s) in your cart.`);
+}
+</script>
+</body>
+</html>
